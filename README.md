@@ -12,7 +12,7 @@ papel, piedra o tijera
 Para este juego utilicé tres botones conectados a la Raspberry Pi Pico. Cada botón representa una opción: piedra, papel o tijera. El jugador escoge una opción y la máquina selecciona otra de manera aleatoria. Después, el programa compara las dos elecciones mediante condicionales y determina quién ganó.
 
 ----
-juegos de lueces
+juegos de luces
 ----
 Para realizar este juego utilicé Wokwi, una Raspberry Pi Pico, tres botones y tres LEDs. El juego consiste en observar una secuencia de luces y después repetirla presionando los botones en el mismo orden.
 El programa está hecho en MicroPython y utiliza números aleatorios para crear las secuencias. Cada vez que se acierta, se pasa a un nuevo nivel y se agrega otra luz. Si se presiona un botón incorrecto, el juego termina y vuelve a comenzar.
