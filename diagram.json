@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "author": "juan diego peña guzman",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-pi-pico", "id": "pico", "top": 0, "left": 300, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 121.4,
+      "left": 38.4,
+      "attrs": { "color": "white" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 217.4,
+      "left": 38.4,
+      "attrs": { "color": "grey" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn3",
+      "top": 323,
+      "left": 38.4,
+      "attrs": { "color": "black" }
+    }
+  ],
+  "connections": [
+    [ "btn1:1.l", "pico:GP2", "yellow", [] ],
+    [ "btn1:2.r", "pico:GND.1", "black", [] ],
+    [ "btn2:1.l", "pico:GP3", "green", [] ],
+    [ "btn2:2.r", "pico:GND.1", "black", [] ],
+    [ "btn3:1.l", "pico:GP4", "blue", [] ],
+    [ "btn3:2.r", "pico:GND.1", "black", [] ]
+  ],
+  "dependencies": {}
+}
