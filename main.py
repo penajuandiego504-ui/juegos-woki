@@ -1,0 +1,102 @@
+from machine import Pin
+import time
+import random
+
+# Botones
+boton1 = Pin(2, Pin.IN, Pin.PULL_UP)
+boton2 = Pin(3, Pin.IN, Pin.PULL_UP)
+boton3 = Pin(4, Pin.IN, Pin.PULL_UP)
+
+# LEDs
+led1 = Pin(5, Pin.OUT)
+led2 = Pin(6, Pin.OUT)
+led3 = Pin(7, Pin.OUT)
+
+botones = [boton1, boton2, boton3]
+leds = [led1, led2, led3]
+
+secuencia = []
+nivel = 1
+puntos = 0
+
+print("===== JUEGO DE MEMORIA =====")
+print("Observa los LEDs y repite la secuencia")
+time.sleep(2)
+
+while True:
+
+    # Agregar un nuevo elemento a la secuencia
+    secuencia.append(random.randint(0, 2))
+
+    print("")
+    print("NIVEL:", nivel)
+    print("Observa la secuencia...")
+
+    time.sleep(1)
+
+    # Mostrar la secuencia con los LEDs
+    for numero in secuencia:
+
+        leds[numero].value(1)
+        time.sleep(0.6)
+        leds[numero].value(0)
+        time.sleep(0.3)
+
+    print("Ahora repite la secuencia")
+
+    correcto = True
+
+    # Esperar las pulsaciones del jugador
+    for esperado in secuencia:
+
+        while True:
+
+            if boton1.value() == 0:
+                presionado = 0
+                break
+
+            if boton2.value() == 0:
+                presionado = 1
+                break
+
+            if boton3.value() == 0:
+                presionado = 2
+                break
+
+            time.sleep_ms(20)
+
+        # Encender brevemente el LED elegido
+        leds[presionado].value(1)
+        time.sleep(0.2)
+        leds[presionado].value(0)
+
+        # Comprobar respuesta
+        if presionado != esperado:
+            correcto = False
+            break
+
+        # Esperar a soltar el botón
+        while boton1.value() == 0 or boton2.value() == 0 or boton3.value() == 0:
+            time.sleep_ms(20)
+
+    if correcto:
+
+        puntos += 1
+
+        print("¡CORRECTO!")
+        print("Puntos:", puntos)
+
+        nivel += 1
+        time.sleep(2)
+
+    else:
+
+        print("¡INCORRECTO!")
+        print("Puntaje final:", puntos)
+        print("Volviendo al nivel 1...")
+
+        secuencia = []
+        nivel = 1
+        puntos = 0
+
+        time.sleep(3)
